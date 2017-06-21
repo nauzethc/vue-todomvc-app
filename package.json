@@ -1,7 +1,7 @@
 {
   "name": "vue-webpack-app",
   "version": "1.0.0",
-  "description": "Vue.js app with Webpack",
+  "description": "Vue.js + Vuex TodoMVC app with Webpack",
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --inline"
