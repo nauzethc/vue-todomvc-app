@@ -12,6 +12,7 @@ const store = new Vuex.Store({
       { id: 2, text: 'Take a walk', done: true },
       { id: 3, text: 'Wash the car', done: false }
     ],
+    loading: false,
     lastId: 3, 
     filter: 'all',
   },
@@ -43,10 +44,19 @@ const store = new Vuex.Store({
     },
     show (state, filter) {
       state.filter = filter
+    },
+    loading (state) {
+      state.loading = !state.loading
     }
   },
   actions: {
-    create: ({ commit }, text)         => commit('create', text),
+    create: ({ commit }, text) => {
+      commit('loading'),
+      setTimeout(() => {
+        commit('create', text)
+        commit('loading')
+      }, 2000)
+    },
     toggle: ({ commit }, id)           => commit('toggle', id),
     edit:   ({ commit }, { id, text }) => commit('edit', { id, text }),
     remove: ({ commit }, id)           => commit('remove', id),

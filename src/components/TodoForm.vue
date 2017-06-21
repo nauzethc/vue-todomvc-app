@@ -5,7 +5,8 @@
         <input class="input" type="text" v-model="text" placeholder="Something to do" />
       </p>
       <p class="control">
-        <button class="button is-primary" type="submit">Add</button>
+        <button v-if="!isLoading" class="button is-primary" type="submit">Add</button>
+        <button v-else class="button is-primary is-loading">Add</button>
       </p>
     </div>
   </form>
@@ -15,9 +16,10 @@
 export default {
   name: 'TodoForm',
   data: () => ({ text: '' }),
+  props: ['isLoading'],
   methods: {
     onSubmit (e) {
-      if (this.text && this.text !== '') {
+      if (this.text && this.text !== '' && !this.isLoading) {
         this.$emit('new-todo', this.text)
         this.text = ''
       }

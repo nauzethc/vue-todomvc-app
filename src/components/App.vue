@@ -3,6 +3,7 @@
     <div class="container">
       <h1 class="title">TodoMVC with Vue.js</h1>
       <todo-form
+        v-bind:is-loading="loading"
         v-on:new-todo="create">
       </todo-form>
       <todo-filter
@@ -42,6 +43,7 @@ export default {
         ? state.todos.filter(todo => todo.done)
         : state.todos.filter(todo => !todo.done)
     ),
+    loading: 'loading',
     filter: 'filter',
   }),
 
